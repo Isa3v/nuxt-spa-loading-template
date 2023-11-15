@@ -22,6 +22,7 @@ To manually install and use this module, follow these steps:
 ```ts
 export default defineNuxtConfig({
   // Other Nuxt configuration options...
+  spaLoadingTemplate: 'loader.html', // Start loader SPA  
   modules: [
     // Add the module by specifying its path in your project.
     '@/modules/spa-loading-template/module'
