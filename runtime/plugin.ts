@@ -34,10 +34,8 @@ export default defineNuxtPlugin((nuxtApp) => {
 
         // Remove element after fatal error occures
         nuxtApp.hook('app:error', () => {
-            if (loaderHtmlComponent) {
-                // Remove the loading component.
-                removeHTMLComponent()
-            }
+            // Remove the loading component.
+            removeHTMLComponent()
         })
     }
 })
