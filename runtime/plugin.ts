@@ -26,5 +26,13 @@ export default defineNuxtPlugin((nuxtApp) => {
                 }
             }, Number(`<%= options.delay %>`))
         })
+
+        // Remove element after fatal error occures
+        nuxtApp.hook('app:error', () => {
+            if (loaderHtmlComponent) {
+                // Remove the loading component after the delay.
+                loaderHtmlComponent.remove()
+            }
+        })
     }
 })
