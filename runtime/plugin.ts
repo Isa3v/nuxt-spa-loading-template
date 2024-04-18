@@ -17,21 +17,26 @@ export default defineNuxtPlugin((nuxtApp) => {
             document.body.firstChild,
         )
 
+        function removeHTMLComponent() {
+            if (loaderHtmlComponent) {
+                // Remove the loading component.
+                loaderHtmlComponent.remove()
+            }
+        }
+
         // Register the 'page:finish' hook to perform actions after page loading is complete.
         nuxtApp.hook('page:finish', () => {
             setTimeout(() => {
-                if (loaderHtmlComponent) {
-                    // Remove the loading component after the delay.
-                    loaderHtmlComponent.remove()
-                }
+                // Remove the loading component.
+                removeHTMLComponent()
             }, Number(`<%= options.delay %>`))
         })
 
         // Remove element after fatal error occures
         nuxtApp.hook('app:error', () => {
             if (loaderHtmlComponent) {
-                // Remove the loading component after the delay.
-                loaderHtmlComponent.remove()
+                // Remove the loading component.
+                removeHTMLComponent()
             }
         })
     }
