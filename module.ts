@@ -1,3 +1,4 @@
+import { template } from 'lodash-es'
 import { defineNuxtModule, addPluginTemplate, createResolver } from '@nuxt/kit'
 import fs from 'fs'
 import path from 'path'
@@ -33,7 +34,10 @@ export default defineNuxtModule({
 
             // Add the custom plugin template for the SPA loading screen.
             addPluginTemplate({
-                src: resolve('./runtime/plugin.ts'),
+                getContents({ options }) {
+                  const contents = readFileSync(resolve('./runtime/plugin.ts'), 'utf-8')
+                  return template(contents)({ options })
+                },
                 mode: 'client',
                 options: {
                     html: loadingTemplateContent,
