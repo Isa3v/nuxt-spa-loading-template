@@ -35,7 +35,7 @@ export default defineNuxtModule({
             // Add the custom plugin template for the SPA loading screen.
             addPluginTemplate({
                 getContents({ options }) {
-                  const contents = readFileSync(resolve('./runtime/plugin.ts'), 'utf-8')
+                  const contents = fs.readFileSync(resolve('./runtime/plugin.ts'), 'utf-8')
                   return template(contents)({ options })
                 },
                 mode: 'client',
